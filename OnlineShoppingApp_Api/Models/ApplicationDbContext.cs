@@ -174,16 +174,13 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Product");
+            entity.ToTable("Product");
 
             entity.Property(e => e.DateCreated).HasColumnType("datetime");
             entity.Property(e => e.DateModified).HasColumnType("datetime");
             entity.Property(e => e.Description)
                 .HasMaxLength(1000)
                 .IsUnicode(false);
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<ProductCategory>(entity =>
@@ -196,13 +193,10 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<ProductWarehouse>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("ProductWarehouse");
+            entity.ToTable("ProductWarehouse");
 
             entity.Property(e => e.DateCreated).HasColumnType("datetime");
             entity.Property(e => e.DateModified).HasColumnType("datetime");
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<Status>(entity =>

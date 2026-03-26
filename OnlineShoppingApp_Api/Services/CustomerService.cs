@@ -22,10 +22,11 @@ namespace OnlineShoppingApp_Api.Services
             }
             else
             {
-                var address = _context.CustomerAddresses.Where(p => p.CustomerId == cust.Id);
+                var address = await _context.CustomerAddresses.Where(p => p.CustomerId == cust.Id).ToListAsync();
                 _context.CustomerAddresses.RemoveRange(address);
                 _context.CustomersData.Remove(cust);
-                return true;
+                var result = await _context.SaveChangesAsync();
+                return result>0;
             }
         }
 
